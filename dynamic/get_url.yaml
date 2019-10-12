@@ -6,5 +6,5 @@
   tasks:
     - name: Download wordpress
       get_url:
-        url:"https://wordpress.org/latest.zip"
+        url: "https://wordpress.org/latest.zip"
         dest: /tmp/  
