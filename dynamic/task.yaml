@@ -28,4 +28,8 @@
         group: wheel 
         uid: 2001
         create_home: yes
+    - name: Install lftp
+      packege:
+        name: lftp
+        state: present
                  
