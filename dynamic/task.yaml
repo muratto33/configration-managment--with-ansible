@@ -29,7 +29,7 @@
         uid: 2001
         create_home: yes
     - name: Install lftp
-      packege:
+      package:
         name: lftp
         state: present
                  
