@@ -22,6 +22,11 @@
         - php-fpm
         - openssh-server
       ignore_errors: true
+    - name: start apache
+      systemd:
+        name: httpd
+        state: restarted
+        enabled: yes  
     
         
         
