@@ -1,23 +1,27 @@
 ---
-- name: Playbook for tasks
-  hosts: all
+- name: Installs wordpress
+  hosts: localhost
   become: yes
-  become_method: sudo
+  become_method: sudo 
+  gather_facts: no 
+  connection: ssh
   tasks:
-    - name: Download wordpress
-      get_url:
-        url: "https://wordpress.org/wordpress-5.2.3.zip"
-        dest: /tmp/
-    - name: Install Unzip
-      package:
-        name: unzip
-        state: present     
-    - name: Unzip
-      unarchive:
-        src: /tmp/wordpress-5.2.3.zip
-        dest: /tmp
-        remote_src: yes
-      ignore_errors: true  
+    - name: Install necessary packages
+      package: 
+        name: "{{item}}"
+        state: latest
+      with_items:
+        - wget
+        - unzip
+        - php-gd
+        - httpd
+        - mysql
+        - mariadb-server
+        - php 
+        - php-mysql
+        - php-fpm
+        - openssh-server
+      ignore_errors: true
     
         
         
