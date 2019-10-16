@@ -1,0 +1,15 @@
+---
+- name: playbook for task
+  hosts: all
+  become: yes
+  bechome_method: sudo
+  tasks: 
+    - name: Download wordpress
+      get_url:
+        url: "https://wordpress.org/latest.zip"
+        dest: /tmp/
+    - name: unzip
+      unarchive:
+        src: /tmp/wordpress-5.2.3.zip 
+        dest: /tmp
+      ignore_errors: true  
