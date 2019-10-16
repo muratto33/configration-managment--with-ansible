@@ -1,0 +1,61 @@
+---
+- name: Installs wordpress
+  hosts: localhost
+  become: yes
+  become_method: sudo 
+  gather_facts: no 
+  connection: ssh
+  tasks:
+    - name: Install necessary packages
+      package: 
+        name: "{{item}}"
+        state: latest
+      with_items:
+        - wget
+        - unzip
+        - php-gd
+        - httpd
+        - mysql
+        - mariadb-server
+        - php 
+        - php-mysql
+        - php-fpm
+        - openssh-server
+      ignore_errors: true
+
+    - name: Download wordpress package
+      get_url:
+        url: "https://wordpress.org/latest.tar.gz"
+        dest: /tmp/
+
+    - name: Unzip wordpress file
+      unarchive:
+        src: /tmp/wordpress-5.2.4.tar.gz
+        dest: /var/www/html/
+        remote_src: yes
+
+    - name: Move files to html folder
+      shell: "mv /var/www/html/wordpress/*  /var/www/html/"
+      ignore_errors: yes
+
+    - name: updatee php
+      shell: "yum -y install epel-release" 
+    - name: a  
+      shell: "rpm -Uvh http://rpms.remirepo.net/enterprise/remi-release-7.rpm"
+    - name: b    
+      shell: "yum -y install yum-utils"
+    - name: b        
+      shell: "yum-config-manager --enable remi-php70"
+    - name: c   
+      shell: "yum update -y"
+    - name: d  
+      shell: "systemctl restart httpd"
+
+
+    - name: Restart httpd 
+      systemd:
+        name: httpd
+        state: started
+        enabled: yes
+      become: yes
+      become_method: sudo
