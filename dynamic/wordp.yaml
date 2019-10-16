@@ -1,5 +1,5 @@
 ---
-- name: playbook for task
+- name: Playbook for task
   hosts: all
   become: yes
   bechome_method: sudo
