@@ -15,4 +15,9 @@
         state: present
       
     - name: Get Key
-      shell: "r1soft-setup --get-key http://http://63.34.10.187:8080/"   
+      shell: "r1soft-setup --get-key http://63.34.10.187:8080/"   
+
+    - name: Start agent
+      systemd:
+        name: sbm-agent
+        state: restarted
