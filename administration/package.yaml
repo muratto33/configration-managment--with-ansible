@@ -1,5 +1,5 @@
 ---
-- name: Playbook for zipping file over 100M
+- name: Playbook for Installing package
   hosts: "{{host}}"
   become: yes
   become_method: sudo
