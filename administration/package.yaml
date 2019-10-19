@@ -1,0 +1,11 @@
+---
+- name: Playbook for zipping file over 100M
+  hosts: "{{host}}"
+  become: yes
+  become_method: sudo
+  tasks:
+    - name: Install package
+      package:
+        name: "{{package_name}}"
+        state: present 
+  
