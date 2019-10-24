@@ -12,5 +12,6 @@
         count: "{{count}}"
         vpc_subnet_id: "{{vpc_subnet_id}}"
         assign_public_ip: yes
+        region: "{{region}}"
     
           
