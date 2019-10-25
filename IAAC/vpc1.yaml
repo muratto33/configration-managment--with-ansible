@@ -1,0 +1,14 @@
+---
+- name: vpc create
+  hosts: localhost
+  gather_facts: yes
+#  vars_files: vpc_vars
+  tasks:
+    - name: create vpc in region
+      ec2_vpc_net:
+        name: "{{name}}"
+        cidr_block: "{{cidr_block}}"
+        region: "{{region}}"
+#        tags: 
+#          module: "{{environment_name}}"
+#      register: vpc
