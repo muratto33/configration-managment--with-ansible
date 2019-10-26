@@ -1,10 +1,19 @@
 ---
-- name: Playbook for creating vpc
+- name: Playbook for Provisioning
   hosts: localhost
   connection: local
   gather_facts: false
   become: false
   tasks:
+    - name: create vpc in region
+      ec2_vpc_net:
+        name: new-vpc
+        cidr_block: 10.10.0.0/16
+        region: eu-central-1
+        tags:
+          module: ec2_vpc_net
+          this: works
+
     - name: Create subnet for database servers
       ec2_vpc_subnet:
         state: present
