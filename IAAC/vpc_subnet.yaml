@@ -20,7 +20,7 @@
         state: present
         region: eu-central-1
         az: eu-central-1a
-        vpc_id:  vpc-06b92cc5f5cb9b690
+        vpc_id:  "{{vpc_info}}"
         cidr: 10.10.1.0/24
         resource_tags:
           Name: Private Subnet
