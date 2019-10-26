@@ -84,7 +84,12 @@
         cidr: 10.10.103.0/24
         resource_tags:
           Name: Public Subnet
-      register: public_subnet3  
+      register: public_subnet3
+    - name: 
+      ec2_vpc_igw:
+        vpc_id:  "{{vpc_info_info.vpcs[0].vpc_id}}"
+        state: present
+      register: igw
       
     - name: example using security group rule descriptions
       ec2_group:
