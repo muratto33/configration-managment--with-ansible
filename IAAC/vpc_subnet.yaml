@@ -25,16 +25,18 @@
         resource_tags:
           Name: Private Subnet
       register: private_subnet
+      
     - name: Create subnet for database servers
       ec2_vpc_subnet:
         state: present
         region: eu-central-1
         az: eu-central-1b
-        vpc_id: vpc-06b92cc5f5cb9b690
+        vpc_id:  "{{vpc_info_info.vpcs[0].vpc_id}}"
         cidr: 10.10.2.0/24
         resource_tags:
           Name: Public Subnet
-      register: public_subnet    
+      register: public_subnet  
+      
     - name: example using security group rule descriptions
       ec2_group:
         name: ssh and httpd open
