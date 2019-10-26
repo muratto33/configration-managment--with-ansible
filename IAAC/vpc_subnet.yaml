@@ -13,7 +13,14 @@
         tags:
           module: ec2_vpc_net
           task: vpc
+      
+    - name: Get VPC info
+      ec2_vpc_net_facts:
+        filters:
+          "tag:module": ec2_vpc_net
       register: vpc_info
+
+
 #Private Subnet ------------------------------------
     - name: Create subnet for database servers
       ec2_vpc_subnet:
