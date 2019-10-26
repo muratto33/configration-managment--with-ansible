@@ -17,7 +17,7 @@
         tags:
           - environment: production
             propagate_at_launch: yes
-   - name: create launch config
+    - name: create launch config
      ec2_lc:
        name: my_new_lc
        image_id: ami-04cf43aca3e6f3de3
