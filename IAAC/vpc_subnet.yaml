@@ -9,7 +9,7 @@
       ec2_vpc_net:
         name: new-vpc
         cidr_block: 10.10.0.0/16
-        region: eu-central-1
+        region: eu-central1
         tags:
           module: ec2_vpc_net
           task: vpc
@@ -30,7 +30,7 @@
         vpc_id:  "{{vpc_info_info.vpcs[0].vpc_id}}"
         cidr: 10.10.1.0/24
         resource_tags:
-          Name: Private Subnet-1
+          Name: Private Subnet1
       register: private_subnet
     - name: Create subnet for database servers
       ec2_vpc_subnet:
@@ -40,7 +40,7 @@
         vpc_id:  "{{vpc_info_info.vpcs[0].vpc_id}}"
         cidr: 10.10.2.0/24
         resource_tags:
-          Name: Private Subnet-2
+          Name: Private Subnet2
       register: private_subnet 
     - name: Create subnet for database servers
       ec2_vpc_subnet:
@@ -51,7 +51,7 @@
         cidr: 10.10.1.0/24
         resource_tags:
           Name: Private Subnet
-      register: private_subnet-3
+      register: private_subnet3
       
 #Public Subnet ----------------------------------------
     - name: Create subnet for  web servers
@@ -62,7 +62,7 @@
         vpc_id:  "{{vpc_info_info.vpcs[0].vpc_id}}"
         cidr: 10.10.101.0/24
         resource_tags:
-          Name: Public Subnet-1
+          Name: Public Subnet1
       register: public_subnet 
     - name: Create subnet for web servers
       ec2_vpc_subnet:
@@ -72,7 +72,7 @@
         vpc_id:  "{{vpc_info_info.vpcs[0].vpc_id}}"
         cidr: 10.10.102.0/24
         resource_tags:
-          Name: Public Subnet-2
+          Name: Public Subnet2
       register: public_subnet  
     
     - name: Create subnet for web servers
@@ -83,7 +83,7 @@
         vpc_id:  "{{vpc_info_info.vpcs[0].vpc_id}}"
         cidr: 10.10.103.0/24
         resource_tags:
-          Name: Public Subnet-3
+          Name: Public Subnet3
       register: public_subnet  
       
     - name: example using security group rule descriptions
