@@ -1,22 +1,22 @@
 --- 
-- name:
+- name: "Playbook for Provisioning"
   become: false
   connection: local
   gather_facts: false
   hosts: localhost
-  name: "Playbook for Provisioning"
   tasks: 
-  - ec2_vpc_net: 
-        cidr_block: 10.10.0.0/16
-        name: new-vpc
-        region: eu-central-1
-        tags: 
-          module: ec2_vpc_net
-          task: vpc
-    name: "create vpc in region"
+  - name: "create vpc in region"
+    ec2_vpc_net: 
+      cidr_block: 10.10.0.0/16
+      name: new-vpc
+      region: eu-central-1
+      tags: 
+      module: ec2_vpc_net
+      task: vpc
+    
     
     - name: Get VPC info
-      - ec2_vpc_net_facts:
+      ec2_vpc_net_facts:
         region: eu-central-1
         vpc_ids: "{{vpc_info.vpcs[0].vpc_id}}"
         "tag:module": ec2_vpc_net
@@ -107,6 +107,6 @@
               - 22
             proto: tcp
             rule_desc: "allow all on port 80"
-        vpc_id: vpc-06b92cc5f5cb9b690
+        vpc_id: "{{vpc_info.vpcs[0].vpc_id}}"
       name: "example using security group rule descriptions"
       register: sec_group_id
