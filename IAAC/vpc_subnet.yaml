@@ -18,9 +18,11 @@
     
     - name: Get VPC info
       ec2_vpc_net_facts:
+        region: eu-central-1
         filters:
           "tag:module": ec2_vpc_net
       register: vpc_info
+      
       
       
     - 
