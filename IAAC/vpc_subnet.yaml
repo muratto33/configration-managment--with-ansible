@@ -1,13 +1,12 @@
 --- 
-- 
+- name:
   become: false
   connection: local
   gather_facts: false
   hosts: localhost
   name: "Playbook for Provisioning"
   tasks: 
-    - 
-      ec2_vpc_net: 
+    - ec2_vpc_net: 
         cidr_block: 10.10.0.0/16
         name: new-vpc
         region: eu-central-1
@@ -17,7 +16,7 @@
       name: "create vpc in region"
     
     - name: Get VPC info
-      ec2_vpc_net_facts:
+        ec2_vpc_net_facts:
         region: eu-central-1
         filters:
           "tag:module": ec2_vpc_net
@@ -33,7 +32,7 @@
         resource_tags: 
           Name: "Private Subnet"
         state: present
-        vpc_id: "{{vpc_info_info.vpcs[0].vpc_id}}"
+        vpc_id: "{{vpc_info.vpcs[0].vpc_id}}"
       name: "Create subnet for database servers"
       register: private_subnet1
     - 
@@ -44,7 +43,7 @@
         resource_tags: 
           Name: "Private Subnet"
         state: present
-        vpc_id: "{{vpc_info_info.vpcs[0].vpc_id}}"
+        vpc_id: "{{vpc_info.vpcs[0].vpc_id}}"
       name: "Create subnet for database servers"
       register: private_subnet2
     - 
@@ -55,7 +54,7 @@
         resource_tags: 
           Name: "Private Subnet"
         state: present
-        vpc_id: "{{vpc_info_info.vpcs[0].vpc_id}}"
+        vpc_id: "{{vpc_info.vpcs[0].vpc_id}}"
       name: "Create subnet for database servers"
       register: private_subnet3
     - 
@@ -66,7 +65,7 @@
         resource_tags: 
           Name: "Public Subnet"
         state: present
-        vpc_id: "{{vpc_info_info.vpcs[0].vpc_id}}"
+        vpc_id: "{{vpc_info.vpcs[0].vpc_id}}"
       name: "Create subnet for  web servers"
       register: public_subnet1
     - 
@@ -77,7 +76,7 @@
         resource_tags: 
           Name: "Public Subnet"
         state: present
-        vpc_id: "{{vpc_info_info.vpcs[0].vpc_id}}"
+        vpc_id: "{{vpc_info.vpcs[0].vpc_id}}"
       name: "Create subnet for web servers"
       register: public_subnet2
     - 
@@ -88,13 +87,13 @@
         resource_tags: 
           Name: "Public Subnet"
         state: present
-        vpc_id: "{{vpc_info_info.vpcs[0].vpc_id}}"
+        vpc_id: "{{vpc_info.vpcs[0].vpc_id}}"
       name: "Create subnet for web servers"
       register: public_subnet3
     - 
       ec2_vpc_igw: 
         state: present
-        vpc_id: "{{vpc_info_info.vpcs[0].vpc_id}}"
+        vpc_id: "{{vpc_info.vpcs[0].vpc_id}}"
       name: ~
       register: igw
     - 
@@ -113,5 +112,3 @@
         vpc_id: vpc-06b92cc5f5cb9b690
       name: "example using security group rule descriptions"
       register: sec_group_id
-
-  
