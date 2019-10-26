@@ -14,7 +14,7 @@
           module: ec2_vpc_net
           task: vpc
       register: vpc_info
-
+#Private Subnet ------------------------------------
     - name: Create subnet for database servers
       ec2_vpc_subnet:
         state: present
@@ -25,7 +25,7 @@
         resource_tags:
           Name: Private Subnet
       register: private_subnet
-     - name: Create subnet for database servers
+    - name: Create subnet for database servers
       ec2_vpc_subnet:
         state: present
         region: eu-central-1
@@ -35,7 +35,7 @@
         resource_tags:
           Name: Private Subnet
       register: private_subnet 
-     - name: Create subnet for database servers
+    - name: Create subnet for database servers
       ec2_vpc_subnet:
         state: present
         region: eu-central-1
@@ -46,6 +46,7 @@
           Name: Private Subnet
       register: private_subnet 
       
+#Public Subnet ----------------------------------------
     - name: Create subnet for  web servers
       ec2_vpc_subnet:
         state: present
@@ -56,18 +57,18 @@
         resource_tags:
           Name: Public Subnet
       register: public_subnet 
-      - name: Create subnet for web servers
-       ec2_vpc_subnet:
-         state: present
-         region: eu-central-1
-         az: eu-central-1b
-         vpc_id:  "{{vpc_info_info.vpcs[0].vpc_id}}"
-         cidr: 10.10.102.0/24
-         resource_tags:
+    - name: Create subnet for web servers
+      ec2_vpc_subnet:
+        state: present
+        region: eu-central-1
+        az: eu-central-1b
+        vpc_id:  "{{vpc_info_info.vpcs[0].vpc_id}}"
+        cidr: 10.10.102.0/24
+        resource_tags:
           Name: Public Subnet
       register: public_subnet  
     
-     - name: Create subnet for web servers
+    - name: Create subnet for web servers
       ec2_vpc_subnet:
         state: present
         region: eu-central-1
