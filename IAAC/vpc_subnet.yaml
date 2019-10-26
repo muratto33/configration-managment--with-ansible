@@ -82,7 +82,7 @@
       ec2_group:
         name: ssh and httpd open
         description: sg with rule descriptions
-        vpc_id: vpc-06b92cc5f5cb9b690 
+        vpc_id: "{{vpc_info_info.vpcs[0].vpc_id}}"
         region: eu-central-1
         rules:
           - proto: tcp
