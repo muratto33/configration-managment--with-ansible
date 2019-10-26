@@ -1,0 +1,35 @@
+---
+- name: Playbook for creating vpc
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  become: false
+  tasks:
+    - name: Create subnet for database servers
+      ec2_vpc_subnet:
+        state: present
+        region: eu-central-1
+        az:  eu-central-1a
+        vpc_id: vpc-06b92cc5f5cb9b690
+        cidr: 10.10.1.0/16
+    - name: create subnet b
+      ec2_vpc_subnet:
+        state: present
+        region: eu-central-1
+        az: eu-centraal-1b
+        vpc_id: vpc-06b92cc5f5cb9b690
+        cidr:  10.10.2.0/16
+     - name: example using security group rule descriptions
+       ec2_group:
+         name: ssh and httpd open
+         description: sg with rule descriptions
+         vpc_id:  vpc-06b92cc5f5cb9b690
+         region: eu-central-1
+         rules:
+           - proto: tcp
+             ports:
+               - 80
+               - 22
+             cidr_ip: 0.0.0.0/0
+             rule_desc: allow all on port 80
+          
