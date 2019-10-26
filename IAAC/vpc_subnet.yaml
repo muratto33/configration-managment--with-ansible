@@ -8,7 +8,7 @@
     - name: create vpc in region
       ec2_vpc_net:
         name: new-vpc
-        cidr_block: 10.10.0.0/16
+        cidr_block: 10.0.1.0/16
         region: eu-central-1
         tags:
           module: ec2_vpc_net
@@ -21,7 +21,7 @@
         region: eu-central-1
         az: eu-central-1a
         vpc_id:  "{{vpc_info_info.vpcs[0].vpc_id}}"
-        cidr: 10.10.1.0/24
+        cidr: 10.10.2.0/24
         resource_tags:
           Name: Private Subnet
       register: private_subnet
@@ -31,7 +31,7 @@
         region: eu-central-1
         az: eu-central-1a
         vpc_id:  "{{vpc_info_info.vpcs[0].vpc_id}}"
-        cidr: 10.10.1.0/24
+        cidr: 10.10.3.0/24
         resource_tags:
           Name: Private Subnet
       register: private_subnet 
