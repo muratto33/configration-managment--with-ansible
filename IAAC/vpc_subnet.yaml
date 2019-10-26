@@ -15,13 +15,14 @@
           module: ec2_vpc_net
           task: vpc
       name: "create vpc in region"
-    - 
-      ec2_vpc_net_facts: 
-        filters: 
-          ? "tag:module"
-          : ec2_vpc_net
-      name: "Get VPC info"
+    
+    - name: Get VPC info
+      ec2_vpc_net_facts:
+        filters:
+          "tag:module": ec2_vpc_net
       register: vpc_info
+      
+      
     - 
       ec2_vpc_subnet: 
         az: eu-central-1a
