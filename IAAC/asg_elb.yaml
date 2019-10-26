@@ -1,0 +1,35 @@
+---
+- name: Playbook for creating vpc
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  become: false
+  tasks:
+    - ec2_asg:
+    name: special
+    load_balancers: [ 'lb1', 'lb2' ]
+    availability_zones: [ 'eu-central-1a', 'eu-central-1b' ]
+    launch_config_name: 'lc-1'
+    min_size: 3
+    max_size: 12
+    desired_capacity: 5
+    vpc_zone_identifier: [ 'subnet-0565bd985d18ad5d2', 'subnet-033c42a29ee427e69' ]
+    tags:
+      - environment: production
+        propagate_at_launch: no 
+   - local_action:
+    module: ec2_elb_lb
+    name: new-vpc
+    scheme: internal
+    state: present
+    instance_ids:
+      - i-0603275ab04222954
+    purge_instance_ids: true
+    subnets:
+      - subnet-0565bd985d18ad5d2
+      - subnet-033c42a29ee427e69
+    listeners:
+      - protocol: http # options are http, https, ssl, tcp
+        load_balancer_port: 80
+        instance_port: 80          
+   
