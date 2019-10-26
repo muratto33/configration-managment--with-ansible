@@ -121,4 +121,4 @@
       - "{{private_subnet2}}"
       - "{{private_subnet3}}"
       - "{{sec_group_id}}"
-  name: ~
+  
