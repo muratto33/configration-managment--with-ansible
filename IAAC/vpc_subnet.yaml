@@ -110,15 +110,5 @@
         vpc_id: vpc-06b92cc5f5cb9b690
       name: "example using security group rule descriptions"
       register: sec_group_id
-- 
-  debug: 
-    var: 
-      - "{{vpc_info_info.vpcs[0].vpc_id}}"
-      - "{{public_subnet1}}"
-      - "{{public_subnet2}}"
-      - "{{public_subnet3}}"
-      - "{{private_subnet1}}"
-      - "{{private_subnet2}}"
-      - "{{private_subnet3}}"
-      - "{{sec_group_id}}"
+
   
