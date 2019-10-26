@@ -12,7 +12,7 @@
         region: eu-central-1
         tags:
           module: ec2_vpc_net
-          this: works
+          task: vpc
       register: vpc_info
 
     - name: Create subnet for database servers
