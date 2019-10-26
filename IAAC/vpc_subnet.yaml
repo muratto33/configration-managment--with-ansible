@@ -13,7 +13,7 @@
         tags:
           module: ec2_vpc_net
           this: works
-        register: vpc_info
+      register: vpc_info
 
     - name: Create subnet for database servers
       ec2_vpc_subnet:
