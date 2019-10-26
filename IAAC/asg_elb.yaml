@@ -16,7 +16,17 @@
         vpc_zone_identifier: [ 'subnet-0565bd985d18ad5d2', 'subnet-033c42a29ee427e69' ]
         tags:
           - environment: production
-            propagate_at_launch: no 
+            propagate_at_launch: yes
+   - name: create launch config
+     ec2_lc:
+       name: my_new_lc
+       image_id: ami-04cf43aca3e6f3de3
+       key_name: ansible
+       region: eu-central-1
+       security_groups: sg-8ae259e8
+       instance_type: t2.micro
+       assign_public_ip: yes
+       instance_port: 80         
 - local_action:
     module: ec2_elb_lb
     name: new-vpc
@@ -31,5 +41,6 @@
     listeners:
       - protocol: http # options are http, https, ssl, tcp
         load_balancer_port: 80
-        instance_port: 80
+  
+        
    
