@@ -36,7 +36,7 @@
       ec2_vpc_subnet:
         state: present
         region: eu-central-1
-        az: eu-central-1a
+        az: eu-central-1b
         vpc_id:  "{{vpc_info_info.vpcs[0].vpc_id}}"
         cidr: 10.10.2.0/24
         resource_tags:
@@ -46,7 +46,7 @@
       ec2_vpc_subnet:
         state: present
         region: eu-central-1
-        az: eu-central-1a
+        az: eu-central-1c
         vpc_id:  "{{vpc_info_info.vpcs[0].vpc_id}}"
         cidr: 10.10.1.0/24
         resource_tags:
@@ -58,7 +58,7 @@
       ec2_vpc_subnet:
         state: present
         region: eu-central-1
-        az: eu-central-1b
+        az: eu-central-1a
         vpc_id:  "{{vpc_info_info.vpcs[0].vpc_id}}"
         cidr: 10.10.101.0/24
         resource_tags:
@@ -79,7 +79,7 @@
       ec2_vpc_subnet:
         state: present
         region: eu-central-1
-        az: eu-central-1b
+        az: eu-central-1c
         vpc_id:  "{{vpc_info_info.vpcs[0].vpc_id}}"
         cidr: 10.10.103.0/24
         resource_tags:
