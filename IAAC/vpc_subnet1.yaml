@@ -5,25 +5,29 @@
   gather_facts: false
   become: false
   tasks:
+# ---------------VPC START----------------------  
+
     - name: create vpc in region
       ec2_vpc_net:
         name: new-vpc
         cidr_block: 10.10.0.0/16
         region: eu-central-1
         tags:
-          module: ec2_vpc_net
+          name: ec2_vpc_net
           task: vpc
-    - name: Get VPC info
+        tenancy: default  
+  #--------------VPC GATHER FACTS-------------      
+    - name: gather facts to get vpc_id of "{{name_of_VPC}}"
       ec2_vpc_net_facts:
         region: eu-central-1
-        vpc_ids: "{{vpc_info.vpcs[0].vpc_id}}"
-       "tag:module": ec2_vpc_net
-      register: vpc_info 
-    - name: Get VPC info
-      ec2_vpc_net_facts:
-        filters:
-          "tag:module": ec2_vpc_net
+        filters: 
+          "tag:Name": ec2_vpc_net
       register: vpc_info
+      
+
+    - name: Display VPC facts(information)
+      debug:
+        var: vpc_info.vpcs[0].vpc_id
 
 
 #Private Subnet ------------------------------------
