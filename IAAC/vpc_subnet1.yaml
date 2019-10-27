@@ -13,15 +13,15 @@
         cidr_block: 10.10.0.0/16
         region: eu-central-1
         tags:
-          name: ec2_vpc_net
+          name: new-vpc
           task: vpc
         tenancy: default  
-  #--------------VPC GATHER FACTS-------------      
-    - name: gather facts to get vpc_id of "{{name_of_VPC}}"
+  #--------------VPC GATHER FACTS------------------     
+    - name: gather facts to get vpc_id of "{{new-vpc}}"
       ec2_vpc_net_facts:
         region: eu-central-1
         filters: 
-          "tag:Name": ec2_vpc_net
+          "tag:Name": new-vpc
       register: vpc_info
       
 
