@@ -19,7 +19,6 @@
         vpc_ids: "{{vpc_info.vpcs[0].vpc_id}}"
        "tag:module": ec2_vpc_net
       register: vpc_info 
-      
     - name: Get VPC info
       ec2_vpc_net_facts:
         filters:
@@ -58,7 +57,11 @@
         resource_tags:
           Name: Private Subnet
       register: private_subnet3 
-      
+
+    - name: new_vpc
+      debug: 
+        var: vpc_info.vpcs[0].vpc_id
+  
 #Public Subnet ----------------------------------------
     - name: Create subnet for  web servers
       ec2_vpc_subnet:
@@ -91,12 +94,11 @@
         resource_tags:
           Name: Public Subnet
       register: public_subnet3  
-      
     - name: example using security group rule descriptions
       ec2_group:
         name: ssh and httpd open
         description: sg with rule descriptions
-        vpc_id: vpc-06b92cc5f5cb9b690 
+        vpc_id: "{{vpc_info.vpcs[0].vpc_id}}"
         region: eu-central-1
         rules:
           - proto: tcp
