@@ -20,7 +20,7 @@
 #-------------ELB-------------------------
 - name: Create the ELB only listening over port 80
   ec2_elb_lb:
-  name: murat-load-balancer
+    name: new-load-balancer
     state: present
     region: us-west-1
     zones:
