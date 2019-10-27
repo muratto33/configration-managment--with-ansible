@@ -1,0 +1,33 @@
+---
+- name: Playbook for elb asg
+  hosts: localhost
+  connection: local 
+  gather_facts: false
+  become: false
+  tasks:
+- ec2_asg:
+    name: special
+    load_balancers: [ 'lb1', 'lb2' ]
+    availability_zones: [ 'eu-central-1a', 'eu-central-1b' ]
+    launch_config_name: 'lc-1'
+    min_size: 3
+    max_size: 12
+    desired_capacity: 5
+    vpc_zone_identifier: [ 'subnet-0175d4344133efac2', 'subnet-0185d67b15327be47' ]
+    tags:
+      - environment: production
+        propagate_at_launch: no 
+#-------------ELB-------------------------
+- name: Create the ELB only listening over port 80
+  ec2_elb_lb:
+  name: murat-load-balancer
+    state: present
+    region: us-west-1
+    zones:
+      - eu-central-1a
+      - eu-central-1b
+    listeners:
+      - protocol: http
+        load_balancer_port: 80
+        instance_port: 80
+  register: elb   
