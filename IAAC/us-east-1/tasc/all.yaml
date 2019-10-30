@@ -13,3 +13,8 @@
 
 - name: Run Private Playbook
   include: privatesubnet.yaml
+
+
+- name: Add igw
+  import_playbook: igw_yaml
+
