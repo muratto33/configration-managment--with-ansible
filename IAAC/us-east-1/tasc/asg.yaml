@@ -1,0 +1,27 @@
+---
+- name: Playbook for VPC
+  hosts: localhost
+  gather_facts: no
+  tasks:
+    - name: create launch config
+      ec2_lc:
+        name: my_new_lc
+        image_id: ami-02eac2c0129f6376b
+        key_name: ansible
+        region: us-east-1
+        security_groups: sg-0c16430a4e734858b
+        instance_type: t2.micro
+        assign_public_ip: yes
+
+    - name: ASG 
+      ec2_asg:
+        name: myasg
+        launch_config_name: my_new_lc
+        health_check_period: 60
+        health_check_type: ELB
+        replace_all_instances: yes
+        min_size: 3
+        max_size: 48
+        desired_capacity: 3
+        vpc_zone_identifier: ['subnet-039905d2e3ce5ff86', 'subnet-024b5de3703b90a20', 'subnet-079e59b1170756708']
+        region: us-east-1
