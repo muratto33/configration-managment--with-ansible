@@ -13,7 +13,7 @@
   include: sec_group.yaml
 
 - name: Run Private Playbook
-  include: privatesubnet.yaml
+  include: publicsubnet.yaml
 
 
 - name: Add igw
