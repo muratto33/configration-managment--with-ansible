@@ -16,6 +16,7 @@
       ec2_vpc_subnet:
         state: present
         vpc_id: vpc-0175952c440722623
+        region: us-east-1
         cidr: 10.0.102.0/24
         resource_tags:
           Name: Web Subnet2
@@ -25,6 +26,7 @@
       ec2_vpc_subnet:
         state: present
         vpc_id: vpc-0175952c440722623
+        region: us-east-1
         cidr: 10.0.103.0/24
         resource_tags:
           Name: Web Subnet3
