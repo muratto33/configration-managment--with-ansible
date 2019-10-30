@@ -6,6 +6,7 @@
       ec2_vpc_subnet:
         state: present
         vpc_id: vpc-0175952c440722623
+        region: us-east-1
         cidr: 10.0.1.0/24
         resource_tags:
           Name: Database Subnet1
