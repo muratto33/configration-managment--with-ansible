@@ -1,13 +1,13 @@
 ---
-- name: Playbook for sec groups
+- name: Playbook for VPC
   hosts: localhost
   tasks:
     - name: VPC for class
       ec2_vpc_net:
         name: TaskVPC
-        cidr_block: 10.10.0.0/16
+        cidr_block: 10.0.0.0/16
         region: us-east-1
-      tags:
-        task: VPC
-        class: ansible
+        tags:
+          Class: Ansible
+          Task: VPC
     
