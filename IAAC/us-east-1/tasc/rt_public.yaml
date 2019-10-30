@@ -5,7 +5,7 @@
   tasks:
     - name: Set up public subnet route table
       ec2_vpc_route_table:
-        vpc_id: vpc-03397932ec4cfdbce
+        vpc_id: vpc-0175952c440722623
         region: us-east-1
         tags:
           Name: Public
