@@ -1,0 +1,16 @@
+---
+- name: Playbook for sec group
+  hosts: localhost
+  tasks:
+    - name: Check host
+     ping:
+
+
+- name: Run private Playbook
+  include: sec-group.yaml
+
+- name: r
+  include: privatesubnets.yaml
+
+- name: r
+  include: publicsubnet.yaml 
