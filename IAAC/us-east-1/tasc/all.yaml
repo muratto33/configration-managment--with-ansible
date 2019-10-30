@@ -17,5 +17,5 @@
 
 
 - name: Add igw
-  import_playbook: igw_yaml
+  import_playbook: igw.yaml
 
