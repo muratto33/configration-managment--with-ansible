@@ -3,7 +3,7 @@
   hosts: localhost
   gather_facts: no
   vars_files:
-    - configuration/region
+    - configurations/regions
   tasks:
     - name: VPC for class
       ec2_vpc_net:
@@ -13,4 +13,3 @@
         tags:
           Class: Ansible
           Task: VPC
-    
