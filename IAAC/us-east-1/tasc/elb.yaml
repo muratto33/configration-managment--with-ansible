@@ -8,8 +8,8 @@
         name: "NewELB"
         state: present
         region: us-east-1
-        subnets: [ 'subnet-0b29a314c94cab3f5' ]
-        security_group_ids: sg-0c16430a4e734858b
+        subnets: [ "{{Web_subnet1.subnet.id}}" ]
+        security_group_ids: "{{SecGroup.group_id}}"   
         listeners:
           - protocol: http
             load_balancer_port: 80

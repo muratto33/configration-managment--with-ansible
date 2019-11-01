@@ -9,7 +9,7 @@
         filters:
           "tag:Name": VPC
       register: VPC1 
-      
+
     - name: Set up public subnet route table
       ec2_vpc_route_table:
         vpc_id: "{{VPC1.vpcs[0].vpc_id}}"
@@ -17,10 +17,10 @@
         tags:
           Name: Public
         subnets:
-          - subnet-039905d2e3ce5ff86
-          - subnet-024b5de3703b90a20
-          - subnet-079e59b1170756708
+          - "{{Web_subnet1.subnet.id}}"
+          - "{{Web_subnet2.subnet.id}}"
+          - "{{Web_subnet3.subnet.id}}"
         routes:
           - dest: 0.0.0.0/0
-            gateway_id: igw-02b1c2836b61d22e9
+            gateway_id: "{{igw.gateway_id}}"
       register: public_route_table
