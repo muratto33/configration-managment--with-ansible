@@ -18,7 +18,7 @@
       ec2_group:
         name: SecGroupFprVPC
         description: sg with 1
-        vpc_id: "{{VPC.vpcs[0].vpc_id}}"
+        vpc_id: "{{VPC1.vpcs[0].vpc_id}}"
         region: us-east-1
         rules:
           - proto: tcp
