@@ -1,14 +1,15 @@
 ---
 - name: Playbook for Subnets
   hosts: localhost
+  gather_facts: no
   tasks:
-    - name: collect VPC info
+    - name: Collect VPC info
       ec2_vpc_net_facts:
         region: us-east-1
         filters:
-          "tag:Name": VPC
+          "tag:Task": VPC
       register: VPC1
-      
+
     - name: Create Public Subnet 1
       ec2_vpc_subnet:
         state: present
