@@ -7,8 +7,8 @@
   tasks:
     - name: VPC for class
       ec2_vpc_net:
-        name: TaskVPC
-        cidr_block: 10.0.0.0/16
+        name: "{{vpc_name}}"
+        cidr_block: "{{vpc_cidr}}"
         region: "{{region}}"
         tags:
           Class: Ansible

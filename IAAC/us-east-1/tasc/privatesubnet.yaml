@@ -1,21 +1,25 @@
 ---
 - name: Playbook for Subnets
   hosts: localhost
+  gather_facts: no
+  vars_files:
+    - configurations/regions
   tasks:
-    - name: collect VPC info
+    - name: Collect VPC info
       ec2_vpc_net_facts:
-        region: us-east-1
+        region: "{{region}}"
         filters:
-          "tag:Name": VPC
+          "tag:Task": VPC
       register: VPC1
-      
+
+
 
     - name: Create Private Subnet 1
       ec2_vpc_subnet:
         state: present
         vpc_id: "{{VPC1.vpcs[0].vpc_id}}"
-        region: us-east-1
-        cidr: 10.0.1.0/24
+        region: "{{region}}"
+        cidr: "{{Private_cidr1}}"
         resource_tags:
           Name: Database Subnet1
       register: database_subnet1
@@ -24,8 +28,8 @@
       ec2_vpc_subnet:
         state: present
         vpc_id: "{{VPC1.vpcs[0].vpc_id}}"
-        region: us-east-1
-        cidr: 10.0.2.0/24
+        region: "{{region}}"
+        cidr: "{{Private_cidr2}}"
         resource_tags:
           Name: Database Subnet2
       register: database_subnet2
@@ -34,8 +38,8 @@
       ec2_vpc_subnet:
         state: present
         vpc_id: "{{VPC1.vpcs[0].vpc_id}}"
-        region: us-east-1
-        cidr: 10.0.3.0/24
+        region: "{{region}}"
+        cidr: "{{Private_cidr3}}"
         resource_tags:
           Name: Database Subnet3
       register: database_subnet3
