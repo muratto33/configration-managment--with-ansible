@@ -1,0 +1,11 @@
+---
+- name: Playbook for provisioning
+  hosts: localhost
+  connection: local 
+  gather_facts: false
+  become: false
+  tasks:
+    - ec2:
+        insatnce_ids: "{{insatnce_ids}}"
+        state: "{{state}}"
+        region: "{{region}}"
