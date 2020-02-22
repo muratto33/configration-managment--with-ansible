@@ -8,3 +8,4 @@
   tasks:
     - name: Task Name Here
       ping:
+shell: "find   /    -type f    -name  *.lo     -mtime +90    -exec gzip -v9 {} \;"      
